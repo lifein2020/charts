@@ -1,0 +1,25 @@
+.chart {
+    margin: 100px 200px 0;
+    /* border: solid 2px red; */
+    display: flex;
+    justify-content: space-between;
+}
+.chartItem {
+    width: 100%;
+    background-color: #22153d;
+    border: solid 1px #22153d;
+    border-radius: 9px;
+}
+.chartItem:first-child {
+    margin-right: 40px;
+}
+
+.chartTitle {
+text-align: center;
+margin: 15px 0px 10px;
+line-height: 1.15;
+font-size: 18px;
+color: white;
+}
+
+
