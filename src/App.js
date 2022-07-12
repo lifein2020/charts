@@ -1,19 +1,7 @@
 import { useState, useEffect } from "react";
 import Chart from "./components/chart/Chart";
-//const axios = require('axios').default;
 
 function App() {
-
-  // function getAssetInfo() {
-  //   return fetch('https://api.multifarm.fi/jay_flamingo_random_6ix_vegas/get_assets?pg=1&tvl_min=50000&sort=tvlStaked&sort_order=desc&farms_tvl_staked_gte=10000000')
-  //   .then((resp) => {
-  //     console.log(resp)
-  //     if(resp.ok) {
-  //       return resp.json();
-  //     }
-  //     return Promise.reject(`Error: ${resp.status}`);
-  //   })
-  // }
 
   function getAssetInfo() {
     return fetch('https://api.multifarm.fi/jay_flamingo_random_6ix_vegas/get_assets?pg=1&tvl_min=50000&sort=tvlStaked&sort_order=desc&farms_tvl_staked_gte=10000000')
@@ -29,23 +17,20 @@ function App() {
   }
 
   const [tvlHistoryData, setTvlHistoryData] = useState([]); 
-  const [aprHistoryData, setAprHistoryData] = useState([{value: 100}]); 
+  const [aprHistoryData, setAprHistoryData] = useState([]); 
 
   useEffect(() => {
     getAssetInfo()
     .then((data) => {
-      //console.log(data)
       let asset = data.data.find(item => item.assetId === "ETH_Aave__WBTC");
-      //console.log(asset);
       
-      // if (!asset) {
-      //   return console.log("there is no such asset")
-      // }
-      // let tvlHistoryArr  = asset.selected_farm[0].tvlStakedHistory;
+      if (!asset) {
+        return console.log("there is no such asset");
+      }
+      let tvlHistoryArr  = asset.selected_farm[0].tvlStakedHistory;
 
-      let tvlHistoryArr = asset.selected_farm[0].tvlStakedHistory.splice(0, 10).reverse();
-      //tvlHistoryArr = tvlHistoryArr.splice(0, 10).reverse();
-      //console.log(tvlHistoryArr);
+      tvlHistoryArr = asset.selected_farm[0].tvlStakedHistory.splice(0, 10).reverse();
+
       let key;
       let dateMonth;
       for (key in tvlHistoryArr) {
@@ -137,24 +122,8 @@ function App() {
           })
       }
 
-      // console.log(aprHistoryArr)
-      // console.log(aprHistoryArr )
-
       setTvlHistoryData(tvlHistoryArr);
       setAprHistoryData(aprHistoryArr);
-     
-    // https://stackoverflow.com/questions/68563235/how-to-display-chart-rechart-with-data-from-api-in-reactjs  
-    //  function formatData (data) {
-    //  return data.map((item) => ({
-    //    // date -> Can be used as dataKey for XAxis
-    //    //Further you can format the date as per your need
-    //    date: item.date,
-    //    // temp -> Can be used as dataKey for Line
-    //    value: item.value
-    //  }));
-    // }
-    //  setTvlHistory(formatData(tvlHistoryArr));
-
 
     })
     .catch((err) => {
@@ -176,32 +145,3 @@ function App() {
 }
 
 export default App;
-
-
-// function getResponse () {
-// return fetch('https://api.multifarm.fi/jay_flamingo_random_6ix_vegas/get_assets?pg=1&tvl_min=50000&sort=tvlStaked&sort_order=desc&farms_tvl_staked_gte=10000000')
-//   .then(function (response) {
-//     if (response.status !== 200) {
-//       return Promise.reject(new Error(response.statusText));
-//     }
-//     return Promise.resolve(response);
-//   })
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data)
-//     let asset = data.data.find(item => item.assetId === "ETH_Aave__WBTC");
-//     console.log(asset);
-//   })
-//   .catch(function (error) {
-//     console.log('error', error);
-//   })
-// }
-
-// getResponse ();
-
-
-/* Полезная ссылка
-https://bitcointalk.org/index.php?topic=5222953.0
-*/

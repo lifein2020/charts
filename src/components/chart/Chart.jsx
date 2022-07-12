@@ -6,15 +6,6 @@ export default function Chart({aprHistoryData, tvlHistoryData}) {
     return (
         <div className="chart"> 
             <div className="chartItem">
-            {/* Как можно использовать массив объектов (api JSON), переданного через props
-                <ul>
-                   {props.tvlHistory.map((item, index) => {
-                      return (
-                          <li key={index}>{item.value}</li>
-                      )
-                    })}
-                </ul> */}
-
                 <h1 className="chartTitle">Assent APR (y)</h1>
                 <ResponsiveContainer width="100%" aspect={2/1} >
                     <AreaChart data={aprHistoryData}  margin={{ top: 20, right: 30, left: 30, bottom: 0 }}>
@@ -36,8 +27,6 @@ export default function Chart({aprHistoryData, tvlHistoryData}) {
 
             <div className="chartItem">
                 <h1 className="chartTitle">Assent TVL</h1>
-                {/* https://evogeek.ru/questions/67470647/
-                 динамический ключ key={`rc_${tvlHistoryData.length}`} для того, чтобы когда добавляется новая точка данных, ключ автоматически увеличивается на 1, и поэтому выполняется повторная визуализация всего объекта.*/}
                 <ResponsiveContainer width="100%" aspect={2/1} key={`rc_${tvlHistoryData.length}`} >
                     <AreaChart data={tvlHistoryData}  margin={{ top: 20, right: 30, left: 30, bottom: 0 }} key={`lc_${tvlHistoryData.length}`}>
                     <defs>
