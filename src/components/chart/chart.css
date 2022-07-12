@@ -1,17 +1,43 @@
 .chart {
-    margin: 100px 200px 0;
-    /* border: solid 2px red; */
+    margin: 20px 15px 0;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
+
+@media (min-width: 768px) {
+    .chart {
+        margin: 70px auto;
+        width: calc(100% - 100px);
+        /*margin: 100px 200px 0;*/
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chart {
+        margin: 70px auto;
+        width: calc(100% - 400px);
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
+
 .chartItem {
     width: 100%;
     background-color: #22153d;
     border: solid 1px #22153d;
     border-radius: 9px;
 }
+
 .chartItem:first-child {
-    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .chartItem:first-child {
+        margin-right: 60px;
+    }
 }
 
 .chartTitle {

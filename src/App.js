@@ -22,14 +22,12 @@ function App() {
   useEffect(() => {
     getAssetInfo()
     .then((data) => {
-      let asset = data.data.find(item => item.assetId === "ETH_Aave__WBTC");
+      let asset = data.data.find(item => item.assetId === "ETH_Aave__USDC");
       
       if (!asset) {
         return console.log("there is no such asset");
       }
-      let tvlHistoryArr  = asset.selected_farm[0].tvlStakedHistory;
-
-      tvlHistoryArr = asset.selected_farm[0].tvlStakedHistory.splice(0, 10).reverse();
+      let tvlHistoryArr  = asset.selected_farm[0].tvlStakedHistory.splice(0, 10).reverse();
 
       let key;
       let dateMonth;
