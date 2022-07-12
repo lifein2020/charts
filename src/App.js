@@ -128,7 +128,7 @@ function App() {
       console.log(`"Error: " ${err}`);
     })
     .finally(() => {
-        console.log(true)
+      console.log(true);
     });
   }, [])
 
