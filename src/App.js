@@ -29,6 +29,7 @@ function App() {
   }
 
   const [tvlHistoryData, setTvlHistoryData] = useState([]); 
+  const [aprHistoryData, setAprHistoryData] = useState([{value: 100}]); 
 
   useEffect(() => {
     getAssetInfo()
@@ -122,8 +123,27 @@ function App() {
         tvlHistoryArr[key].date = dateMonth;
       }
 
+      let aprValue = [2564];
+      for (let i=0; i<=9; i++) {
+        let b = Math.ceil((aprValue[i] + aprValue[i] * 5 / 100) * 100) / 100
+        aprValue.push(b);
+      }
+
+      let aprHistoryArr = []
+      for (key in tvlHistoryArr) {
+          aprHistoryArr.push({
+            date:  tvlHistoryArr[key].date,
+            value:  aprValue[key],
+          })
+      }
+
+      // console.log(aprHistoryArr)
+      // console.log(aprHistoryArr )
+
       setTvlHistoryData(tvlHistoryArr);
+      setAprHistoryData(aprHistoryArr);
      
+    // https://stackoverflow.com/questions/68563235/how-to-display-chart-rechart-with-data-from-api-in-reactjs  
     //  function formatData (data) {
     //  return data.map((item) => ({
     //    // date -> Can be used as dataKey for XAxis
@@ -147,7 +167,10 @@ function App() {
 
   return (
     <div className="App">
-      <Chart tvlHistoryData={tvlHistoryData} />
+      <Chart 
+        aprHistoryData = {aprHistoryData}
+        tvlHistoryData = {tvlHistoryData}
+       />
     </div>
   );
 }
@@ -177,3 +200,8 @@ export default App;
 // }
 
 // getResponse ();
+
+
+/* Полезная ссылка
+https://bitcointalk.org/index.php?topic=5222953.0
+*/
