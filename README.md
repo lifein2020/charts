@@ -3,6 +3,7 @@
 [Project Link](https://asset-charts.vercel.app/)
 ## Functionality
 Frontend, which make API Call, outputs the asset and make two charts.
+The chart shows statistics for the last 10 days from the current date. The charts last date updated daily.
 ## Stack
 * [Create React App](https://github.com/facebook/create-react-app)
 * [Recharts](https://recharts.org/en-US/) - charting library.
